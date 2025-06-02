@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -12,11 +13,12 @@ android {
     defaultConfig {
         applicationId = "com.example.tmdbclient"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "TMDB_API_KEY", "\"${project.properties["tmdbApiKey"]}\"")
     }
 
     buildTypes {
@@ -49,7 +51,28 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.compose.navigation)
+    implementation(libs.androidx.paging)
+    implementation(libs.androidx.paging.compose)
     implementation(libs.generativeai)
+    // Glide
+    ksp(libs.glide.ksp)
+    implementation(libs.glide)
+    implementation(libs.glide.okhttp3.integration)
+    implementation(libs.glide.compose)
+    ksp(libs.moshi.kotlin.codegen)
+    // Koin
+    api(libs.koin.core)
+    api(libs.koin.android)
+    api(libs.koin.androidx.compose)
+    // Retrofit
+    api(libs.retrofit)
+    api(libs.retrofit.converter.moshi)
+    implementation(libs.okhttp)
+    api(libs.logging.interceptor)
+    api(libs.moshi.adapters)
+    api(libs.moshi.kotlin)
+    // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
