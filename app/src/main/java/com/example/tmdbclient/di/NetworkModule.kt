@@ -1,6 +1,7 @@
 package com.example.tmdbclient.di
 
 import com.example.tmdbclient.BuildConfig
+import com.example.tmdbclient.data.remote.TmdbApiService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -17,14 +18,13 @@ val networkModule = module {
 
     single<Moshi> {
         Moshi.Builder()
-            .add(KotlinJsonAdapterFactory()) // For Kotlin reflection (if not using Moshi codegen for all types)
+            .add(KotlinJsonAdapterFactory())
             .build()
     }
 
-    // Provides a singleton OkHttpClient instance
     single<OkHttpClient> {
         val loggingInterceptor = HttpLoggingInterceptor().apply {
-            level = if (BuildConfig.DEBUG) { // Only log in debug builds
+            level = if (BuildConfig.DEBUG) {
                 HttpLoggingInterceptor.Level.BODY
             } else {
                 HttpLoggingInterceptor.Level.NONE
@@ -32,15 +32,12 @@ val networkModule = module {
         }
         OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
-            .addInterceptor { chain -> // Interceptor to add API key to every request
+            .addInterceptor { chain ->
                 val originalRequest = chain.request()
-                val originalHttpUrl = originalRequest.url
-
-                val url = originalHttpUrl.newBuilder()
-                    .addQueryParameter("api_key", BuildConfig.tmdbApiKey)
-                    .build()
-
-                val requestBuilder = originalRequest.newBuilder().url(url)
+                val requestBuilder = originalRequest.newBuilder()
+                    .header("Authorization", "Bearer ${BuildConfig.tmdbApiKey}")
+                    .header("accept", "application/json")
+                    .method(originalRequest.method, originalRequest.body)
                 chain.proceed(requestBuilder.build())
             }
             .connectTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
@@ -49,17 +46,16 @@ val networkModule = module {
             .build()
     }
 
-    // Provides a singleton Retrofit instance
     single<Retrofit> {
         Retrofit.Builder()
             .baseUrl(TMDB_BASE_URL)
-            .client(get<OkHttpClient>()) // Koin will inject the OkHttpClient defined above
-            .addConverterFactory(MoshiConverterFactory.create(get<Moshi>())) // Koin will inject Moshi
+            .client(get<OkHttpClient>())
+            .addConverterFactory(MoshiConverterFactory.create(get<Moshi>()))
             .build()
     }
 
-    // Provides a singleton TmdbApiService instance
     single<TmdbApiService> {
-        get<Retrofit>().create(TmdbApiService::class.java) // Koin will inject Retrofit
+        get<Retrofit>().create(TmdbApiService::class.java)
     }
+
 }

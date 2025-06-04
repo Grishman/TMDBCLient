@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- General sizes -->
+    <dimen name="default_elevation">4dp</dimen>
+    <dimen name="default_content_padding">16dp</dimen>
+
+    <dimen name="size_extra_half_small">6dp</dimen>
+    <dimen name="size_extra_small">8dp</dimen>
+    <dimen name="size_extra_small_medium">10dp</dimen>
+    <dimen name="spacer_small">12dp</dimen>
+    <dimen name="spacer_large">24dp</dimen>
+    <dimen name="icon_size">48dp</dimen>
+    <dimen name="score_size">60dp</dimen>
+    <dimen name="details_movie_content_height">180dp</dimen>
+    <dimen name="details_movie_poster_width">120dp</dimen>
+</resources>

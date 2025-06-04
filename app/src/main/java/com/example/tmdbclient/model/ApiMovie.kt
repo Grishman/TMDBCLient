@@ -3,7 +3,6 @@ package com.example.tmdbclient.model
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
-// For the list of movies
 @JsonClass(generateAdapter = true)
 data class MovieListResponse(
     @Json(name = "page") val page: Int,
@@ -22,11 +21,11 @@ data class Movie(
     @Json(name = "vote_average") val voteAverage: Double,
 )
 
-// For the movie details page
 @JsonClass(generateAdapter = true)
 data class MovieDetails(
     @Json(name = "id") val id: Int,
     @Json(name = "title") val title: String,
+    @Json(name = "original_title") val originalTitle: String,
     @Json(name = "poster_path") val posterPath: String?,
     @Json(name = "backdrop_path") val backdropPath: String?,
     @Json(name = "overview") val overview: String,
@@ -37,7 +36,7 @@ data class MovieDetails(
     @Json(name = "runtime") val runtime: Int?,
 )
 
-@JsonClass(generateAdapter = true) // Recommended for Moshi codegen
+@JsonClass(generateAdapter = true)
 data class Genre(
     @Json(name = "id") val id: Int,
     @Json(name = "name") val name: String,
