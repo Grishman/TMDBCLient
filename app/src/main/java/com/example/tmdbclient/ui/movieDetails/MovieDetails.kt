@@ -62,6 +62,7 @@ import com.bumptech.glide.integration.compose.GlideImage
 import com.example.tmdbclient.R
 import com.example.tmdbclient.model.MovieDetails
 import com.example.tmdbclient.utils.Constants.TMDB_IMAGE_BASE_URL
+import com.example.tmdbclient.utils.Constants.TMDB_IMAGE_ORIGINAL
 import java.util.Locale
 import kotlin.math.min
 
@@ -120,7 +121,7 @@ private fun MovieDetailsContent(
     Box(modifier = Modifier.fillMaxSize()) {
         // Backdrop Image with Parallax
         GlideImage(
-            model = TMDB_IMAGE_BASE_URL + movie.backdropPath,
+            model = TMDB_IMAGE_ORIGINAL + movie.backdropPath,
             contentDescription = "Movie backdrop",
             modifier = Modifier
                 .fillMaxWidth()

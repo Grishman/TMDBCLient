@@ -2,6 +2,8 @@ package com.example.tmdbclient.di
 
 import com.example.tmdbclient.BuildConfig
 import com.example.tmdbclient.data.remote.TmdbApiService
+import com.example.tmdbclient.utils.Constants.TIMEOUT_SECONDS
+import com.example.tmdbclient.utils.Constants.TMDB_BASE_URL
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -11,18 +13,15 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
-private const val TMDB_BASE_URL = "https://api.themoviedb.org/3/"
-private const val TIMEOUT_SECONDS = 15L
-
 val networkModule = module {
 
-    single<Moshi> {
+    single {
         Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
             .build()
     }
 
-    single<OkHttpClient> {
+    single {
         val loggingInterceptor = HttpLoggingInterceptor().apply {
             level = if (BuildConfig.DEBUG) {
                 HttpLoggingInterceptor.Level.BODY
@@ -46,7 +45,7 @@ val networkModule = module {
             .build()
     }
 
-    single<Retrofit> {
+    single {
         Retrofit.Builder()
             .baseUrl(TMDB_BASE_URL)
             .client(get<OkHttpClient>())
@@ -54,7 +53,7 @@ val networkModule = module {
             .build()
     }
 
-    single<TmdbApiService> {
+    single {
         get<Retrofit>().create(TmdbApiService::class.java)
     }
 

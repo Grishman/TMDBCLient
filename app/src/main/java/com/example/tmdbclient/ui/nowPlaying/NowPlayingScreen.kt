@@ -37,11 +37,10 @@ import com.bumptech.glide.integration.compose.placeholder
 import com.example.tmdbclient.R
 import com.example.tmdbclient.model.Movie
 import com.example.tmdbclient.utils.Constants.TMDB_IMAGE_BASE_URL
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun NowPlayingMoviesScreen(
-    viewModel: NowPlayingViewModel = koinViewModel(),
+    viewModel: NowPlayingViewModel,
     onMovieClick: (Int) -> Unit,
 ) {
 

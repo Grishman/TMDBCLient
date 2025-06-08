@@ -8,29 +8,25 @@ import com.example.tmdbclient.model.Movie
 
 
 class MoviePagingSource(
-    private val movieRepository: MovieRepository
+    private val movieRepository: MovieRepository,
 ) : PagingSource<Int, Movie>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         val currentPage = params.key ?: 1 // Start with page 1 if no key is provided
-        return try {
-            val responseResult = movieRepository.getNowPlayingMoviesPage(page = currentPage)
+        val responseResult = movieRepository.getNowPlayingMoviesPage(page = currentPage)
 
-            responseResult.fold(
-                onSuccess = { movieListResponse ->
-                    LoadResult.Page(
-                        data = movieListResponse.movies,
-                        prevKey = if (currentPage == 1) null else currentPage - 1,
-                        nextKey = if (movieListResponse.movies.isEmpty() || currentPage == movieListResponse.totalPages) null else currentPage + 1
-                    )
-                },
-                onFailure = { exception ->
-                    LoadResult.Error(exception)
-                }
-            )
-        } catch (e: Exception) {
-            LoadResult.Error(e)
-        }
+        return responseResult.fold(
+            onSuccess = { movieListResponse ->
+                LoadResult.Page(
+                    data = movieListResponse.movies,
+                    prevKey = if (currentPage == 1) null else currentPage - 1,
+                    nextKey = if (movieListResponse.movies.isEmpty() || currentPage == movieListResponse.totalPages) null else currentPage + 1
+                )
+            },
+            onFailure = { exception ->
+                LoadResult.Error(exception)
+            }
+        )
     }
 
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {

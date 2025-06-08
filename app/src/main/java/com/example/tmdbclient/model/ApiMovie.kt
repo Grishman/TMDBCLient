@@ -31,13 +31,4 @@ data class MovieDetails(
     @Json(name = "overview") val overview: String,
     @Json(name = "release_date") val releaseDate: String,
     @Json(name = "vote_average") val voteAverage: Double,
-    @Json(name = "tagline") val tagline: String?,
-    @Json(name = "genres") val genres: List<Genre>,
-    @Json(name = "runtime") val runtime: Int?,
-)
-
-@JsonClass(generateAdapter = true)
-data class Genre(
-    @Json(name = "id") val id: Int,
-    @Json(name = "name") val name: String,
 )
