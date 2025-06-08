@@ -19,14 +19,18 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -43,7 +47,8 @@ fun NowPlayingMoviesScreen(
     onMovieClick: (Int) -> Unit,
 ) {
 
-    val lazyMovieItems: LazyPagingItems<Movie> = viewModel.movies.collectAsLazyPagingItems()
+    val lazyMovieItems: LazyPagingItems<Movie> = viewModel.moviesFiltered.collectAsLazyPagingItems()
+    val searchQuery by viewModel.searchQuery.collectAsStateWithLifecycle()
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -56,6 +61,16 @@ fun NowPlayingMoviesScreen(
         if (lazyMovieItems.loadState.refresh is LoadState.Loading) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
         }
+
+        OutlinedTextField(
+            value = searchQuery,
+            onValueChange = { viewModel.onSearchQueryChanged(it) },
+            label = { Text("Search Movies by Title") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 8.dp),
+            singleLine = true
+        )
 
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
