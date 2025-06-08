@@ -27,7 +27,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -98,11 +97,11 @@ fun NowPlayingMoviesScreen(
                     }
 
                     is LoadState.Error -> {
-                        item {
+                        item(span = { GridItemSpan(maxCurrentLineSpan) }) {
                             Box(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(16.dp)
+                                    .padding(dimensionResource(R.dimen.default_content_padding))
                             ) {
                                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                                     Text("Error loading more movies", color = MaterialTheme.colorScheme.error)

@@ -125,7 +125,7 @@ private fun MovieDetailsContent(
             contentDescription = "Movie backdrop",
             modifier = Modifier
                 .fillMaxWidth()
-                .height(400.dp)
+                .height(dimensionResource(R.dimen.details_movie_backdrop_height))
                 .offset(y = -parallaxOffset)
                 .graphicsLayer(alpha = backdropAlpha),
             contentScale = ContentScale.Crop
@@ -154,7 +154,7 @@ private fun MovieDetailsContent(
                 .verticalScroll(scrollState)
         ) {
             // Top spacing for backdrop
-            Spacer(modifier = Modifier.height(280.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.details_movie_card_top_spacing)))
 
             // Main Content Card
             Card(
@@ -240,7 +240,7 @@ private fun MovieDetailsContent(
                         }
                     }
 
-                    Spacer(modifier = Modifier.height(24.dp))
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacer_large)))
 
                     // Description Section
                     Text(
@@ -334,7 +334,7 @@ private fun LoadingState(onBackClick: () -> Unit) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(bottom = 100.dp),
+                .padding(bottom = dimensionResource(R.dimen.details_movie_poster_width)),
             contentAlignment = Alignment.Center
         ) {
             Card(
@@ -546,7 +546,7 @@ private fun ScoreSection(score: Float) {
         Column {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(4.dp)
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.size_extra_half_small))
             ) {
                 Icon(
                     imageVector = Icons.Default.Star,

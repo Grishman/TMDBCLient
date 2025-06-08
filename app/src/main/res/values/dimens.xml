@@ -13,4 +13,6 @@
     <dimen name="score_size">60dp</dimen>
     <dimen name="details_movie_content_height">180dp</dimen>
     <dimen name="details_movie_poster_width">120dp</dimen>
+    <dimen name="details_movie_card_top_spacing">280dp</dimen>
+    <dimen name="details_movie_backdrop_height">400dp</dimen>
 </resources>

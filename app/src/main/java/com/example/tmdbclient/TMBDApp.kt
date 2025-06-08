@@ -13,7 +13,7 @@ import org.koin.core.logger.Level
 
 class TMBDApp : Application(), KoinComponent {
 
-    val koinModules: List<Module> = listOf(
+    private val koinModules: List<Module> = listOf(
         networkModule,
         repositoryModule,
         viewModelModule,
