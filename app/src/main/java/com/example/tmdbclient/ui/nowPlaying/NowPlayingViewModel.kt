@@ -6,9 +6,9 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.tmdbclient.data.paging.MoviePagingSource
-import com.example.tmdbclient.data.repository.MovieRepository
-import com.example.tmdbclient.model.Movie
+import com.example.data.paging.MoviePagingSource
+import com.example.data.repository.MovieRepository
+import com.example.data.model.Movie
 import kotlinx.coroutines.flow.Flow
 
 class NowPlayingViewModel(private val movieRepository: MovieRepository) : ViewModel() {

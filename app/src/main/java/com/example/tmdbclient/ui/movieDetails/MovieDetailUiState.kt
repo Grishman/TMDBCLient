@@ -1,6 +1,6 @@
 package com.example.tmdbclient.ui.movieDetails
 
-import com.example.tmdbclient.model.MovieDetails
+import com.example.data.model.MovieDetails
 
 
 sealed interface MovieDetailUiState {

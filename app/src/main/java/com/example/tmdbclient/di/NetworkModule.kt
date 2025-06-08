@@ -1,7 +1,7 @@
 package com.example.tmdbclient.di
 
 import com.example.tmdbclient.BuildConfig
-import com.example.tmdbclient.data.remote.TmdbApiService
+import com.example.data.remote.TmdbApiService
 import com.example.tmdbclient.utils.Constants.TIMEOUT_SECONDS
 import com.example.tmdbclient.utils.Constants.TMDB_BASE_URL
 import com.squareup.moshi.Moshi

@@ -1,10 +1,10 @@
-package com.example.tmdbclient.data.paging
+package com.example.data.paging
 
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.tmdbclient.data.repository.MovieRepository
-import com.example.tmdbclient.model.Movie
+import com.example.data.model.Movie
+import com.example.data.repository.MovieRepository
 
 
 class MoviePagingSource(

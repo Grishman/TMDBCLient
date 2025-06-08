@@ -1,12 +1,11 @@
-package com.example.tmdbclient.data.repository
+package com.example.data.repository
 
 
-import com.example.tmdbclient.data.remote.TmdbApiService
-import com.example.tmdbclient.model.MovieDetails
-import com.example.tmdbclient.model.MovieListResponse
+import com.example.data.model.MovieDetails
+import com.example.data.model.MovieListResponse
+import com.example.data.remote.TmdbApiService
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
@@ -16,13 +15,11 @@ class MovieRepositoryImpl(private val apiService: TmdbApiService, val dispatcher
 
     override suspend fun getNowPlayingMoviesPage(page: Int): Result<MovieListResponse> {
         return runCatching {
-            delay(1500)
             apiService.getNowPlayingMovies(page = page)
         }
     }
 
     override fun getMovieDetails(movieId: Int): Flow<Result<MovieDetails>> = flow {
-        delay(1500)
         val movieDetails = apiService.getMovieDetails(movieId = movieId)
         emit(Result.success(movieDetails))
     }.catch {

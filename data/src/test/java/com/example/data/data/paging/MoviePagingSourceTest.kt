@@ -1,10 +1,11 @@
-package com.example.tmdbclient.data.paging
+package com.example.data.data.paging
 
 import androidx.paging.PagingSource
-import com.example.tmdbclient.MainDispatcherRule
-import com.example.tmdbclient.data.repository.MovieRepository
-import com.example.tmdbclient.model.Movie
-import com.example.tmdbclient.model.MovieListResponse
+import com.example.data.MainDispatcherRule
+import com.example.data.model.Movie
+import com.example.data.model.MovieListResponse
+import com.example.data.paging.MoviePagingSource
+import com.example.data.repository.MovieRepository
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi

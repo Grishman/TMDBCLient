@@ -1,17 +1,19 @@
-package com.example.tmdbclient.data.repository
+package com.example.data.data.repository
 
 import app.cash.turbine.test
-import com.example.tmdbclient.MainDispatcherRule
-import com.example.tmdbclient.data.remote.TmdbApiService
-import com.example.tmdbclient.model.Movie
-import com.example.tmdbclient.model.MovieDetails
-import com.example.tmdbclient.model.MovieListResponse
+import com.example.data.MainDispatcherRule
+import com.example.data.model.Movie
+import com.example.data.model.MovieDetails
+import com.example.data.model.MovieListResponse
+import com.example.data.remote.TmdbApiService
+import com.example.data.repository.MovieRepositoryImpl
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

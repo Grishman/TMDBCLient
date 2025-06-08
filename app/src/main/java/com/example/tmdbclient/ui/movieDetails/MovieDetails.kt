@@ -60,7 +60,7 @@ import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.example.tmdbclient.R
-import com.example.tmdbclient.model.MovieDetails
+import com.example.data.model.MovieDetails
 import com.example.tmdbclient.utils.Constants.TMDB_IMAGE_BASE_URL
 import com.example.tmdbclient.utils.Constants.TMDB_IMAGE_ORIGINAL
 import java.util.Locale

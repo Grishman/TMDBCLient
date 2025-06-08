@@ -1,8 +1,8 @@
-package com.example.tmdbclient.data.repository
+package com.example.data.repository
 
-import com.example.tmdbclient.model.MovieDetails
-import com.example.tmdbclient.model.MovieListResponse
 import kotlinx.coroutines.flow.Flow
+import com.example.data.model.MovieDetails
+import com.example.data.model.MovieListResponse
 
 interface MovieRepository {
     suspend fun getNowPlayingMoviesPage(page: Int): Result<MovieListResponse>

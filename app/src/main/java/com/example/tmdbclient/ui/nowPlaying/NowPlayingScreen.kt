@@ -35,7 +35,7 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.bumptech.glide.integration.compose.placeholder
 import com.example.tmdbclient.R
-import com.example.tmdbclient.model.Movie
+import com.example.data.model.Movie
 import com.example.tmdbclient.utils.Constants.TMDB_IMAGE_BASE_URL
 
 @Composable

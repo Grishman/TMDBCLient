@@ -1,11 +1,12 @@
-package com.example.tmdbclient.data.remote
+package com.example.data.remote
 
-import com.example.tmdbclient.model.MovieDetails
-import com.example.tmdbclient.model.MovieListResponse
-import com.example.tmdbclient.utils.Constants.DEFAULT_LANGUAGE
+import com.example.data.model.MovieDetails
+import com.example.data.model.MovieListResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+
+const val DEFAULT_LANGUAGE = "en-US"
 
 interface TmdbApiService {
 

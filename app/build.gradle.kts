@@ -47,7 +47,7 @@ android {
 }
 
 dependencies {
-
+    implementation(project(":data"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
@@ -60,7 +60,6 @@ dependencies {
     implementation(libs.compose.navigation)
     implementation(libs.androidx.paging)
     implementation(libs.androidx.paging.compose)
-    implementation(libs.generativeai)
     implementation(libs.kotlinx.serialization.json)
     // Glide
     ksp(libs.glide.ksp)
@@ -72,13 +71,6 @@ dependencies {
     api(libs.koin.core)
     api(libs.koin.android)
     api(libs.koin.androidx.compose)
-    // Retrofit
-    api(libs.retrofit)
-    api(libs.retrofit.converter.moshi)
-    implementation(libs.okhttp)
-    api(libs.logging.interceptor)
-    api(libs.moshi.adapters)
-    api(libs.moshi.kotlin)
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

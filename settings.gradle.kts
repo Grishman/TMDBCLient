@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "TMDBCLient"
 include(":app")
- 
+include(":data")
